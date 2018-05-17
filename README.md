@@ -2,6 +2,7 @@
 A python implementation of the joint ancestral state reconstruction algorithm of Pupko et al
 
 ##Usage
+```
   -h, --help            show this help message and exit
   -a FILE, --alignment FILE
                         Input alignment file. Required.
@@ -11,7 +12,7 @@ A python implementation of the joint ancestral state reconstruction algorithm of
   -o PREFIX, --output_prefix PREFIX
                         Output prefix. Required.
   -v, --verbose         More verbose output
- 
+```
 ##Citation
 For the joint ancestral reconstruction method, please cite "Tal Pupko, Itsik Pe, Ron Shamir, Dan Graur; A
 Fast Algorithm for Joint Reconstruction of Ancestral Amino Acid Sequences,
