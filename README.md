@@ -3,6 +3,8 @@ A python implementation of the joint ancestral state reconstruction algorithm of
 
 ##Usage
 ```
+usage: usage: pyjar.py [options]
+
   -h, --help            show this help message and exit
   -a FILE, --alignment FILE
                         Input alignment file. Required.
