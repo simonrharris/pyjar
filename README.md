@@ -1,7 +1,7 @@
 # pyjar
 A python implementation of the joint ancestral state reconstruction algorithm of Pupko et al
 
-##Usage
+## Usage
 ```
 usage: usage: pyjar.py [options]
 
@@ -15,7 +15,7 @@ usage: usage: pyjar.py [options]
                         Output prefix. Required.
   -v, --verbose         More verbose output
 ```
-##Citation
+## Citation
 For the joint ancestral reconstruction method, please cite "Tal Pupko, Itsik Pe, Ron Shamir, Dan Graur; A
 Fast Algorithm for Joint Reconstruction of Ancestral Amino Acid Sequences,
 Molecular Biology and Evolution, Volume 17, Issue 6, 1 June 2000, Pages
