@@ -8,11 +8,7 @@ A python implementation of the joint ancestral state reconstruction algorithm of
 * [License](#license)
 
 ## Requirements
-pyjar requires python3 and the following modules:
-Bio
-dendropy
-numpy
-scipy
+pyjar requires python3 and the following modules: Bio, dendropy, numpy, scipy.
 
 ## Usage
 ```
