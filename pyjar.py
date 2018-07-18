@@ -256,11 +256,11 @@ def jar(alignment_filename, tree_filename, info_filename, output_prefix, verbose
 			if node.is_leaf():
 				taxon=str(node.taxon).strip("'")
 				try:
-					if base[taxon]!="-":
+					if base[taxon] in ["A", "C", "G", "T"]:
 						#1a. Let j be the amino acid at y. Set, for each amino acid i: Cy(i)= j. This implies that no matter what is the amino acid in the father of y, j is assigned to node y.
 						node.C={"A": base[taxon], "C": base[taxon], "G": base[taxon], "T": base[taxon]}
 					
-					#1b. Set for each amino acid i: Ly(i) = Pij(ty), where ty is the branch length between y and its father.
+						#1b. Set for each amino acid i: Ly(i) = Pij(ty), where ty is the branch length between y and its father.
 						node.L={"A": pij[mb["A"]][mb[base[taxon]]], "C": pij[mb["C"]][mb[base[taxon]]], "G": pij[mb["G"]][mb[base[taxon]]], "T": pij[mb["T"]][mb[base[taxon]]]}
 					else:
 						
