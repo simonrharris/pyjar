@@ -256,7 +256,7 @@ def jar(alignment_filename, tree_filename, info_filename, output_prefix, verbose
 			pij=node.pij
 			
 			if node.is_leaf():
-				taxon=str(node.taxon).strip("'")
+				taxon=str(node.taxon.label).strip("'")
 				try:
 					if base[taxon] in ["A", "C", "G", "T"]:
 						#1a. Let j be the amino acid at y. Set, for each amino acid i: Cy(i)= j. This implies that no matter what is the amino acid in the father of y, j is assigned to node y.
@@ -395,7 +395,7 @@ def jar(alignment_filename, tree_filename, info_filename, output_prefix, verbose
 	if verbose:
 		print("Printing tree with internal nodes labelled: ", output_prefix+".joint.tre")
 	tree_output=open(output_prefix+".joint.tre", "w")
-	print(tree.as_string(schema="newick", suppress_rooting=True), file=tree_output)
+	print(tree.as_string(schema="newick", suppress_rooting=True, unquoted_underscores=True, suppress_internal_node_labels=True).replace("'",""), file=tree_output)
 	tree_output.close()
 	
 	if verbose:
