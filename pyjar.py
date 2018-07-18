@@ -392,8 +392,8 @@ def jar(alignment_filename, tree_filename, info_filename, output_prefix, verbose
 ################   
 
 def main():
-	(options, args)=getargv()
-	jar(options.alignment, options.tree, options.info, options.prefix, options.verbose)
+	args=getargv()
+	jar(args.alignment, args.tree, args.info, args.prefix, args.verbose)
             
 
 if __name__ == "__main__":
