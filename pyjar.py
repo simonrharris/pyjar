@@ -371,7 +371,7 @@ def jar(alignment_filename, tree_filename, info_filename, output_prefix, verbose
 		for node in tree.preorder_node_iter():
 			try:
 				if node.r in ["A", "C", "G", "T"] and node.parent_node.r in ["A", "C", "G", "T"] and node.r!=node.parent_node.r:
-					node.snps+=1
+					node.snps+=len(base_patterns[column])
 			except AttributeError:
 				continue
 
