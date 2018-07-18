@@ -195,6 +195,8 @@ def jar(alignment_filename, tree_filename, info_filename, output_prefix, verbose
 			new_alignment[nodename]=["?"]*len(alignment[0])
 		if node.parent_node!=None:
 			node.pij=calculate_pij(node.edge_length, rm)
+			
+		node.snps=0;
 	
 	
 	#Find unique base patterns to speed up calculations
@@ -364,9 +366,23 @@ def jar(alignment_filename, tree_filename, info_filename, output_prefix, verbose
 					node.r="-"
 				for bp in base_patterns[column]:
 					new_alignment[node.taxon.label][bp]=node.r
+		
+		
+		for node in tree.preorder_node_iter():
+			try:
+				if node.r in ["A", "C", "G", "T"] and node.parent_node.r in ["A", "C", "G", "T"] and node.r!=node.parent_node.r:
+					node.snps+=1
+			except AttributeError:
+				continue
 
 	#if verbose:
 	#	print(onetime, twotime, threetime)
+	
+	for node in tree.preorder_node_iter():
+		try:
+			node.edge_length=node.snps;
+		except AttributeError:
+			continue
 	
 	if verbose:
 		print("Printing alignment with internal node sequences: ", output_prefix+".joint.aln")
