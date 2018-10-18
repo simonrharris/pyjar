@@ -37,8 +37,10 @@ def getargv():
 ####################################################
 
 def read_alignment(filename, verbose=False):
-	if verbose:
-		print("Reading alignment file...")
+
+	if not os.path.isfile(filename):
+		print("Error: alignment file does not exist")
+		sys.exit()
 
 	filetype=["phylip", "fasta", "clustal", "nexus", "emboss", "stockholm", "fasta-m10", "ig"]
 
@@ -72,7 +74,7 @@ def read_alignment(filename, verbose=False):
 	x=0
 
 	while readok==False and x<len(filetype):
-		if not quiet:
+		if verbose:
 			print("Trying to open file "+filename+" as "+filetype[x])
 
 		try:
@@ -95,10 +97,17 @@ def read_alignment(filename, verbose=False):
 #Calculate Pij from Q matrix and branch length
 def calculate_pij(branch_length,rate_matrix):
 	#print(linalg.expm(numpy.multiply(branch_length,rate_matrix)))
-	return numpy.log(linalg.expm(numpy.multiply(branch_length,rate_matrix)))
+	if branch_length==0:
+		return numpy.array([[1, 0, 0, 0,], [0, 1, 0, 0,], [0, 0, 1, 0,], [0, 0, 0, 1,]])
+	else:
+		return numpy.log(linalg.expm(numpy.multiply(branch_length,rate_matrix)))
+		
 
 #Read the tree file and root
 def read_tree(treefile):
+	if not os.path.isfile(treefile):
+		print("Error: alignment file does not exist")
+		sys.exit()
 	t=dendropy.Tree.get(path=treefile, schema="newick", preserve_underscores=True, rooting="force-rooted")
 	t.reroot_at_midpoint()
 	t.update_bipartitions()
@@ -107,6 +116,9 @@ def read_tree(treefile):
 
 #Read the RAxML info file to get rates and frequencies
 def read_info(infofile):
+    if not os.path.isfile(treefile):
+        print("Error: alignment file does not exist")
+        sys.exit()
     r=[]
     f=[]
     for line in open(infofile, "rU"):
